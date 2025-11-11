@@ -1,6 +1,7 @@
 "use client"
 
 import DashboardLayout from "@/components/dashboard/dashboard-layout"
+import TrialGuard from "@/components/ui/trial-guard"
 import { useEffect, useMemo, useState } from "react"
 import { apiGet } from "@/lib/fetcher"
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from "recharts"
@@ -119,7 +120,8 @@ export default function SpaceManagementOverviewPage() {
 	const colors = ["#0d7a8c", "#c41e3a", "#1e3a8a", "#10b981", "#f59e0b"]
 
 	return (
-		<DashboardLayout>
+		<TrialGuard>
+			<DashboardLayout>
 			<div className="p-8 bg-gray-50 min-h-screen">
 				<div className="max-w-7xl mx-auto space-y-6">
 					<div className="flex items-end justify-between gap-4 flex-wrap">
@@ -240,5 +242,6 @@ export default function SpaceManagementOverviewPage() {
 				</div>
 			</div>
 		</DashboardLayout>
+		</TrialGuard>
 	)
 }

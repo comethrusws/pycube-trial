@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Toaster } from "react-hot-toast"
+import { TrialProvider } from "@/lib/trial-context"
 import "./globals.css"
 
 // Optimize font loading with display swap and preload
@@ -52,14 +53,16 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
       <body className={`${geistSans.className} bg-background text-foreground antialiased contain-layout`}>
-        <div id="root" className="gpu-accelerated">
-          {children}
-        </div>
-        <Toaster 
-          position="top-right"
-          toastOptions={toastOptions}
-          containerClassName="animate-optimized"
-        />
+        <TrialProvider>
+          <div id="root" className="gpu-accelerated">
+            {children}
+          </div>
+          <Toaster 
+            position="top-right"
+            toastOptions={toastOptions}
+            containerClassName="animate-optimized"
+          />
+        </TrialProvider>
       </body>
     </html>
   )

@@ -9,6 +9,7 @@ import {
 import { apiGet } from "@/lib/fetcher"
 import FloorMap from "@/components/mobile/floor-map"
 import AILayout from "@/components/dashboard/ai-layout"
+import TrialGuard from "@/components/ui/trial-guard"
 
 interface Asset {
   id: string
@@ -296,7 +297,8 @@ export default function MobileAssetSearchPage() {
   }
 
   return (
-    <AILayout>
+    <TrialGuard>
+      <AILayout>
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 p-4">
@@ -749,5 +751,6 @@ export default function MobileAssetSearchPage() {
 
     </div>
     </AILayout>
+    </TrialGuard>
   )
 }

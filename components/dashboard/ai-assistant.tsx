@@ -5,6 +5,8 @@ import { X, Bot, Send, Sparkles, MessageCircle, Zap, BrainCog } from "lucide-rea
 import { usePathname } from "next/navigation"
 import { getAIAssistantPrompts } from "@/lib/ai-prompts"
 import { apiGet } from "@/lib/fetcher"
+import { useTrial } from "@/lib/trial-context"
+import TrialModal from "@/components/ui/trial-modal"
 
 
 
@@ -31,9 +33,11 @@ export default function AiAssistant() {
   const [isLoading, setIsLoading] = useState(false)
   const [inputValue, setInputValue] = useState("")
   const [assetData, setAssetData] = useState<AssetData | null>(null)
+  const [showTrialModal, setShowTrialModal] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const pathname = usePathname()
+  const { isTrialMode } = useTrial()
 
   const suggestedPrompts = getAIAssistantPrompts(pathname)
 
@@ -258,6 +262,11 @@ export default function AiAssistant() {
   }
 
   const handleToggle = () => {
+    if (isTrialMode) {
+      setShowTrialModal(true)
+      return
+    }
+    
     setIsOpen(!isOpen)
     if (!isOpen && messages.length === 0) {
       setMessages([{ 
