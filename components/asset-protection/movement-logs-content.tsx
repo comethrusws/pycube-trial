@@ -125,12 +125,12 @@ const StatCard = ({
   color?: string
 }) => {
   const colorClasses = {
-    blue: "bg-[#001f3f]/5 border-[#001f3f]/10 backdrop-blur-sm",
-    green: "bg-[#0d7a8c]/5 border-[#0d7a8c]/10 backdrop-blur-sm",
-    yellow: "bg-yellow-500/5 border-yellow-500/10 backdrop-blur-sm",
-    red: "bg-red-500/5 border-red-500/10 backdrop-blur-sm",
-    purple: "bg-purple-500/5 border-purple-500/10 backdrop-blur-sm",
-    gray: "bg-gray-500/5 border-gray-500/10 backdrop-blur-sm"
+    blue: "bg-[#001f3f]/5 border-[#001f3f]/10 backdrop-blur-2xl",
+    green: "bg-[#0d7a8c]/5 border-[#0d7a8c]/10 backdrop-blur-2xl",
+    yellow: "bg-yellow-500/5 border-yellow-500/10 backdrop-blur-2xl",
+    red: "bg-red-500/5 border-red-500/10 backdrop-blur-2xl",
+    purple: "bg-purple-500/5 border-purple-500/10 backdrop-blur-2xl",
+    gray: "bg-gray-500/5 border-gray-500/10 backdrop-blur-2xl"
   }
   
   const iconColorClasses = {
@@ -251,10 +251,10 @@ export default function MovementLogsContent() {
           <div className="h-8 bg-[#001f3f]/10 rounded-2xl w-64"></div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="h-32 bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10"></div>
+              <div key={i} className="h-32 bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10"></div>
             ))}
           </div>
-          <div className="h-96 bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10"></div>
+          <div className="h-96 bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10"></div>
         </div>
       </div>
     )
@@ -333,7 +333,7 @@ export default function MovementLogsContent() {
 
       {/* Advanced Filters */}
       {showFilters && (
-        <div className="bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
+        <div className="bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-light text-[#001f3f]">Advanced Filters</h3>
             <button
@@ -354,7 +354,7 @@ export default function MovementLogsContent() {
                   value={filters.search}
                   onChange={(e) => handleFilterChange('search', e.target.value)}
                   placeholder="Search by asset name..."
-                  className="w-full pl-10 pr-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                  className="w-full pl-10 pr-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
                 />
               </div>
             </div>
@@ -364,7 +364,7 @@ export default function MovementLogsContent() {
               <select
                 value={filters.department}
                 onChange={(e) => handleFilterChange('department', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               >
                 <option value="">All Departments</option>
                 {data?.filters.departments.map(dept => (
@@ -378,7 +378,7 @@ export default function MovementLogsContent() {
               <select
                 value={filters.assetType}
                 onChange={(e) => handleFilterChange('assetType', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               >
                 <option value="">All Types</option>
                 {data?.filters.assetTypes.map(type => (
@@ -392,7 +392,7 @@ export default function MovementLogsContent() {
               <select
                 value={filters.zoneId}
                 onChange={(e) => handleFilterChange('zoneId', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               >
                 <option value="">All Zones</option>
                 {data?.filters.zones.map(zone => (
@@ -409,7 +409,7 @@ export default function MovementLogsContent() {
                 type="date"
                 value={filters.startDate}
                 onChange={(e) => handleFilterChange('startDate', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               />
             </div>
             
@@ -419,7 +419,7 @@ export default function MovementLogsContent() {
                 type="date"
                 value={filters.endDate}
                 onChange={(e) => handleFilterChange('endDate', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               />
             </div>
             
@@ -428,7 +428,7 @@ export default function MovementLogsContent() {
               <select
                 value={filters.unauthorized}
                 onChange={(e) => handleFilterChange('unauthorized', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               >
                 <option value="">All Movements</option>
                 <option value="false">Authorized Only</option>
@@ -441,7 +441,7 @@ export default function MovementLogsContent() {
               <select
                 value={filters.riskLevel}
                 onChange={(e) => handleFilterChange('riskLevel', e.target.value)}
-                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
               >
                 <option value="">All Risk Levels</option>
                 <option value="low">Low</option>
@@ -455,7 +455,7 @@ export default function MovementLogsContent() {
       )}
 
       {/* Risk Breakdown - Minimal Design */}
-      <div className="bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
+      <div className="bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
         <h3 className="text-lg font-light text-[#001f3f] mb-6">Risk Distribution</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -512,7 +512,7 @@ export default function MovementLogsContent() {
       </div>
 
       {/* Movement Logs Table */}
-      <div className="bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10 shadow-sm overflow-hidden">
+      <div className="bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-[#001f3f]/10">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-light text-[#001f3f]">
@@ -523,7 +523,7 @@ export default function MovementLogsContent() {
               <select
                 value={pageLimit}
                 onChange={(e) => setPageLimit(Number(e.target.value))}
-                className="px-3 py-1 border border-[#001f3f]/20 rounded-2xl text-sm bg-white/70 backdrop-blur-sm"
+                className="px-3 py-1 border border-[#001f3f]/20 rounded-2xl text-sm bg-white/70 backdrop-blur-2xl"
               >
                 <option value={25}>25 per page</option>
                 <option value={50}>50 per page</option>
@@ -535,7 +535,7 @@ export default function MovementLogsContent() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-2 py-1 border border-[#001f3f]/20 rounded-2xl text-sm bg-white/70 backdrop-blur-sm"
+                  className="px-2 py-1 border border-[#001f3f]/20 rounded-2xl text-sm bg-white/70 backdrop-blur-2xl"
                 >
                   <option value="timestamp">Time</option>
                   <option value="assetName">Asset</option>
@@ -576,7 +576,7 @@ export default function MovementLogsContent() {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white/30 backdrop-blur-sm divide-y divide-[#001f3f]/10">
+            <tbody className="bg-white/30 backdrop-blur-2xl divide-y divide-[#001f3f]/10">
               {data?.logs.map((log) => {
                 const timestamp = formatTimestamp(log.timestamp)
                 return (
@@ -737,8 +737,8 @@ export default function MovementLogsContent() {
 
       {/* Log Detail Modal */}
       {selectedLog && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-xl flex items-center justify-center p-4 z-50">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#001f3f]/10 shadow-2xl">
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-2xl flex items-center justify-center p-4 z-50">
+          <div className="bg-white/90 backdrop-blur-2xl rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#001f3f]/10 shadow-2xl">
             <div className="p-6 border-b border-[#001f3f]/10">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-light text-[#001f3f]">Movement Log Details</h3>
@@ -755,7 +755,7 @@ export default function MovementLogsContent() {
               {/* Asset Information */}
               <div>
                 <h4 className="text-sm font-medium text-[#001f3f] mb-3">Asset Information</h4>
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-[#001f3f]/10 p-4 space-y-2">
+                <div className="bg-white/50 backdrop-blur-2xl rounded-2xl border border-[#001f3f]/10 p-4 space-y-2">
                   <p className="text-sm"><span className="font-medium text-gray-700">Name:</span> <span className="text-[#001f3f]">{selectedLog.asset?.name}</span></p>
                   <p className="text-sm"><span className="font-medium text-gray-700">Type:</span> <span className="text-[#001f3f]">{selectedLog.asset?.type}</span></p>
                   <p className="text-sm"><span className="font-medium text-gray-700">Category:</span> <span className="text-[#001f3f]">{selectedLog.asset?.category}</span></p>
@@ -770,7 +770,7 @@ export default function MovementLogsContent() {
               {/* Movement Details */}
               <div>
                 <h4 className="text-sm font-medium text-[#001f3f] mb-3">Movement Details</h4>
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-[#001f3f]/10 p-4 space-y-3">
+                <div className="bg-white/50 backdrop-blur-2xl rounded-2xl border border-[#001f3f]/10 p-4 space-y-3">
                   <div>
                     <p className="font-medium text-green-700">From Location:</p>
                     <p className="text-sm text-gray-600 ml-4">
@@ -795,7 +795,7 @@ export default function MovementLogsContent() {
               {/* Compliance Information */}
               <div>
                 <h4 className="text-sm font-medium text-[#001f3f] mb-3">Compliance & Authorization</h4>
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-[#001f3f]/10 p-4 space-y-2">
+                <div className="bg-white/50 backdrop-blur-2xl rounded-2xl border border-[#001f3f]/10 p-4 space-y-2">
                   <div className="flex items-center gap-2">
                     <span className="font-medium">Status:</span>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -822,7 +822,7 @@ export default function MovementLogsContent() {
               {/* Timestamp */}
               <div>
                 <h4 className="text-sm font-medium text-[#001f3f] mb-3">Timestamp</h4>
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-[#001f3f]/10 p-4">
+                <div className="bg-white/50 backdrop-blur-2xl rounded-2xl border border-[#001f3f]/10 p-4">
                   <p className="font-medium">{formatTimestamp(selectedLog.timestamp).date}</p>
                   <p className="text-sm text-gray-600">{formatTimestamp(selectedLog.timestamp).time}</p>
                 </div>

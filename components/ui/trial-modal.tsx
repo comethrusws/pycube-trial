@@ -44,10 +44,10 @@ export default function TrialModal({ isOpen, onClose, featureName = "this featur
           <div className="bg-gray-50 rounded-lg p-4 mb-6">
             <div className="flex items-center justify-center space-x-2 text-teal-600">
               <Mail className="w-4 h-4" />
-              <span className="font-medium">billing@pycube.com</span>
+              <span className="font-medium">admin@pycube.com</span>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              Our team will help you upgrade to unlock all features
+              Our sales team will help you upgrade to unlock all features
             </p>
           </div>
 
@@ -60,7 +60,7 @@ export default function TrialModal({ isOpen, onClose, featureName = "this featur
               Continue with Trial
             </button>
             <a
-              href="mailto:billing@pycube.com?subject=Pycube Trial Upgrade Request"
+              href="mailto:admin@pycube.com?subject=Pycube Trial Upgrade Request"
               className="flex-1 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors text-center"
             >
               Contact Billing

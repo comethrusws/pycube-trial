@@ -1,26 +1,28 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { useTrial } from "@/lib/trial-context"
 import TrialModal from "@/components/ui/trial-modal"
 
 interface TrialOverlayProps {
   children: React.ReactNode
+  blurMainContentOnly?: boolean
 }
 
-export default function TrialOverlay({ children }: TrialOverlayProps) {
+export default function TrialOverlay({ children, blurMainContentOnly = false }: TrialOverlayProps) {
   const pathname = usePathname()
   const { isTrialMode, isPageRestricted, getFeatureName } = useTrial()
   const [showModal, setShowModal] = useState(false)
 
   const isRestricted = isTrialMode && isPageRestricted(pathname)
 
-  const handleOverlayClick = () => {
+  // Auto-show modal for restricted pages
+  useEffect(() => {
     if (isRestricted) {
       setShowModal(true)
     }
-  }
+  }, [isRestricted])
 
   if (!isRestricted) {
     return <>{children}</>
@@ -28,30 +30,7 @@ export default function TrialOverlay({ children }: TrialOverlayProps) {
 
   return (
     <>
-      <div className="relative">
-        {/* Grayed out content */}
-        <div 
-          className="filter grayscale opacity-60 pointer-events-none select-none"
-          style={{ filter: "grayscale(100%) opacity(0.6)" }}
-        >
-          {children}
-        </div>
-        
-        {/* Invisible overlay for clicks */}
-        <div 
-          className="absolute inset-0 z-10 cursor-pointer"
-          onClick={handleOverlayClick}
-          title="Click to learn more about upgrading"
-        />
-
-        {/* Trial indicator badge */}
-        <div className="absolute top-4 right-4 z-20">
-          <div className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg animate-pulse">
-            Trial Mode
-          </div>
-        </div>
-      </div>
-
+      {children}
       <TrialModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}

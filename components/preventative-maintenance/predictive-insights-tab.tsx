@@ -18,7 +18,7 @@ const Modal = ({ isOpen, onClose, title, children }: {
 
   return (
     <div className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-center justify-center z-50 p-4">
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden border border-white/20">
+      <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden border border-white/20">
         <div className="flex items-center justify-between p-8 border-b border-gray-100/50">
           <h2 className="text-xl font-light tracking-tight" style={{ color: "#001f3f" }}>{title}</h2>
           <button
@@ -82,7 +82,7 @@ const ScheduleMaintenanceModal = ({ asset, onClose }: { asset: any, onClose: () 
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="bg-blue-50/50 backdrop-blur-sm border border-blue-100/50 rounded-2xl p-6">
+      <div className="bg-blue-50/50 backdrop-blur-2xl border border-blue-100/50 rounded-2xl p-6">
         <div className="flex items-start gap-4">
           <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
             <AlertTriangle className="w-5 h-5 text-blue-600" />
@@ -205,7 +205,7 @@ const StatCard = ({
   icon?: React.ComponentType<any>
   trend?: string
 }) => (
-  <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-500 border border-gray-100/50">
+  <div className="bg-white/80 backdrop-blur-2xl rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-500 border border-gray-100/50">
     <div className="flex items-start justify-between mb-4">
       <div>
         <p className="text-sm font-medium text-gray-500 mb-1 tracking-wide">{title}</p>
@@ -230,7 +230,7 @@ const ChartCard = ({ title, children, action }: {
   children: React.ReactNode
   action?: React.ReactNode 
 }) => (
-  <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-sm hover:shadow-md transition-all duration-500 border border-gray-100/50 overflow-hidden">
+  <div className="bg-white/80 backdrop-blur-2xl rounded-3xl shadow-sm hover:shadow-md transition-all duration-500 border border-gray-100/50 overflow-hidden">
     <div className="flex items-center justify-between p-8 pb-4">
       <h3 className="text-lg font-light tracking-tight" style={{ color: "#001f3f" }}>
         {title}

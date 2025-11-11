@@ -1,7 +1,6 @@
 "use client"
 
 import DashboardLayout from "@/components/dashboard/dashboard-layout"
-import TrialOverlay from "@/components/ui/trial-overlay"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -61,8 +60,7 @@ export default function ReadersPage() {
 	}
 
 	return (
-		<TrialOverlay>
-			<DashboardLayout>
+		<DashboardLayout>
 			<div className="p-8 bg-gray-50 min-h-screen">
 				<div className="max-w-7xl mx-auto space-y-6">
 					<div>
@@ -193,6 +191,5 @@ export default function ReadersPage() {
 				</div>
 			</div>
 		</DashboardLayout>
-		</TrialOverlay>
 	)
 }

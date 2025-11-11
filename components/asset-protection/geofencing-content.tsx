@@ -235,7 +235,7 @@ const FloorPlanMap = ({
       </div>
 
       {/* Map Legend */}
-      <div className="mt-4 bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-[#001f3f]/10">
+      <div className="mt-4 bg-white/70 backdrop-blur-2xl p-4 rounded-2xl border border-[#001f3f]/10">
         <h4 className="font-medium text-[#001f3f] mb-3">Geofence Types</h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex items-center gap-2">
@@ -728,7 +728,7 @@ function GeofencingContent() {
       <div className="p-8 bg-[#f8fafc] min-h-screen">
         <div className="animate-pulse space-y-8">
           <div className="h-8 bg-[#001f3f]/10 rounded-2xl w-64"></div>
-          <div className="h-96 bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10"></div>
+          <div className="h-96 bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10"></div>
         </div>
       </div>
     )
@@ -793,7 +793,7 @@ function GeofencingContent() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white/50 border border-[#001f3f]/10 rounded-3xl p-6 backdrop-blur-sm">
+        <div className="bg-white/50 border border-[#001f3f]/10 rounded-3xl p-6 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <Shield className="w-6 h-6 text-[#001f3f]" />
             <div>
@@ -803,7 +803,7 @@ function GeofencingContent() {
           </div>
         </div>
         
-        <div className="bg-white/50 border border-[#0d7a8c]/10 rounded-3xl p-6 backdrop-blur-sm">
+        <div className="bg-white/50 border border-[#0d7a8c]/10 rounded-3xl p-6 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6 text-[#0d7a8c]" />
             <div>
@@ -813,7 +813,7 @@ function GeofencingContent() {
           </div>
         </div>
         
-        <div className="bg-white/50 border border-yellow-500/10 rounded-3xl p-6 backdrop-blur-sm">
+        <div className="bg-white/50 border border-yellow-500/10 rounded-3xl p-6 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <EyeOff className="w-6 h-6 text-yellow-600" />
             <div>
@@ -823,7 +823,7 @@ function GeofencingContent() {
           </div>
         </div>
         
-        <div className="bg-white/50 border border-red-500/10 rounded-3xl p-6 backdrop-blur-sm">
+        <div className="bg-white/50 border border-red-500/10 rounded-3xl p-6 backdrop-blur-2xl">
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-6 h-6 text-red-600" />
             <div>
@@ -840,7 +840,7 @@ function GeofencingContent() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Map View */}
         <div className="lg:col-span-2">
-          <div className="bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
+          <div className="bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-light text-[#001f3f]">Floor Plan & Geofences</h3>
               {isCreating && (
@@ -864,7 +864,7 @@ function GeofencingContent() {
         {/* Side Panel */}
         <div className="space-y-6">
           {/* Filters */}
-          <div className="bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
+          <div className="bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-light text-[#001f3f]">Filters</h3>
               <button
@@ -892,7 +892,7 @@ function GeofencingContent() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search zones..."
-                    className="w-full pl-10 pr-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                    className="w-full pl-10 pr-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
                   />
                 </div>
               </div>
@@ -904,7 +904,7 @@ function GeofencingContent() {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                  className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
                 >
                   <option value="all">All Types</option>
                   <option value="authorized">Authorized</option>
@@ -921,7 +921,7 @@ function GeofencingContent() {
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-sm"
+                  className="w-full px-3 py-2 border border-[#001f3f]/20 rounded-2xl focus:ring-2 focus:ring-[#0d7a8c] bg-white/70 backdrop-blur-2xl"
                 >
                   <option value="all">All Status</option>
                   <option value="active">Active</option>
@@ -932,7 +932,7 @@ function GeofencingContent() {
           </div>
 
           {/* Geofence List */}
-          <div className="bg-white/50 backdrop-blur-sm rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
+          <div className="bg-white/50 backdrop-blur-2xl rounded-3xl border border-[#001f3f]/10 p-6 shadow-sm">
             <h3 className="text-lg font-light text-[#001f3f] mb-4">
               Geofence Zones ({filteredGeofences.length})
             </h3>
@@ -941,7 +941,7 @@ function GeofencingContent() {
               {filteredGeofences.map((geofence) => (
                 <div
                   key={geofence.id}
-                  className={`p-4 rounded-2xl border cursor-pointer transition-all duration-200 backdrop-blur-sm transform hover:-translate-y-0.5 hover:shadow-lg ${
+                  className={`p-4 rounded-2xl border cursor-pointer transition-all duration-200 backdrop-blur-2xl transform hover:-translate-y-0.5 hover:shadow-lg ${
                     selectedGeofence?.id === geofence.id
                       ? 'border-[#0d7a8c]/30 bg-[#0d7a8c]/5 shadow-md'
                       : 'border-[#001f3f]/10 hover:border-[#0d7a8c]/30 hover:bg-white/80'

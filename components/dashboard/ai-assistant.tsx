@@ -322,7 +322,7 @@ export default function AiAssistant() {
 
   return (
     <div className="fixed bottom-8 right-8 w-[420px] h-[650px] flex flex-col z-50 animate-in slide-in-from-bottom-4 duration-300">
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100/50 flex flex-col h-full overflow-hidden">
+      <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl border border-gray-100/50 flex flex-col h-full overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100/50 bg-gradient-to-r from-slate-50 to-gray-50">
           <div className="flex items-center gap-3">

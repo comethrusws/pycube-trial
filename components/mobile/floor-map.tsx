@@ -204,7 +204,7 @@ export default function FloorMap({ assets, selectedAsset, onAssetSelect, floor, 
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-      <div className="bg-gray-50/80 backdrop-blur-sm px-6 py-4 border-b border-gray-200">
+      <div className="bg-gray-50/80 backdrop-blur-2xl px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-medium" style={{ color: "#001f3f" }}>{building} - {floor}</h3>
@@ -224,7 +224,7 @@ export default function FloorMap({ assets, selectedAsset, onAssetSelect, floor, 
           onClick={handleCanvasClick}
           onTouchStart={handleCanvasTouch}
         />
-        <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/20">
+        <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-2xl rounded-2xl p-4 shadow-xl border border-white/20">
           <div className="text-xs font-semibold uppercase tracking-wider text-gray-700 mb-3" style={{ color: "#001f3f" }}>Asset Status</div>
           <div className="space-y-2 text-xs">
             <div className="flex items-center gap-3">

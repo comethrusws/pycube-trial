@@ -397,7 +397,7 @@ export default function AiAssistantPage() {
     <AILayout>
       <div className="h-full flex flex-col bg-gradient-to-br from-slate-50 to-gray-100">
         {/* Header */}
-        <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50 p-4 sm:p-6 flex-shrink-0">
+        <div className="bg-white/80 backdrop-blur-2xl border-b border-gray-200/50 p-4 sm:p-6 flex-shrink-0">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-teal-600 to-teal-700 flex items-center justify-center shadow-lg" style={{ backgroundColor: "#0d7a8c" }}>
@@ -441,7 +441,7 @@ export default function AiAssistantPage() {
         {/* Main Content */}
         <div className="flex-1 flex gap-4 lg:gap-6 p-4 sm:p-6 min-h-0">
           {/* Chat Interface - Full width on mobile, shared on desktop */}
-          <div className="flex-1 flex flex-col bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 shadow-lg min-h-0">
+          <div className="flex-1 flex flex-col bg-white/80 backdrop-blur-2xl rounded-2xl border border-gray-200/50 shadow-lg min-h-0">
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
               {messages.map((msg, index) => (
@@ -531,7 +531,7 @@ export default function AiAssistantPage() {
           {/* Suggested Prompts Sidebar - Hidden on mobile, visible on desktop */}
           <div className="hidden lg:flex lg:w-80 flex-shrink-0">
             <div className="w-full max-h-full overflow-y-auto space-y-4">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-2xl rounded-2xl p-6 border border-gray-200/50 shadow-sm">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-700 mb-4">Quick Insights</h3>
                 <div className="space-y-3">
                   {suggestedPrompts.slice(0, 6).map((prompt, index) => (
@@ -550,7 +550,7 @@ export default function AiAssistantPage() {
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-2xl rounded-2xl p-6 border border-gray-200/50 shadow-sm">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-700 mb-4">More Prompts</h3>
                 <div className="space-y-3">
                   {suggestedPrompts.slice(6).map((prompt, index) => (
