@@ -204,6 +204,25 @@ export default function AssetProtectionCards() {
           <span>Click to view details →</span>
         </div>
       </div>
+
+      {/* High Value Assets at Risk - Blur this */}
+      <TrialBlurWrapper featureName="High Value Assets at Risk">
+        <div 
+          className="bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1"
+          onClick={() => handleCardClick('highrisk')}
+        >
+          <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
+            High Value at Risk
+          </p>
+          <p className="text-xs text-gray-600 mb-4">Assets</p>
+          <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
+            {data?.metrics.highValueAssetsAtRisk ?? 0}
+          </p>
+          <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            <span>Click to view details →</span>
+          </div>
+        </div>
+      </TrialBlurWrapper>
     </>
   )
 }
