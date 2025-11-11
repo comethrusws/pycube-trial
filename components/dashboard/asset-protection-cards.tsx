@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Shield, AlertTriangle, MapPin, Clock } from "lucide-react"
 import { apiGet } from "@/lib/fetcher"
 import toast from "react-hot-toast"
+import TrialBlurWrapper from "@/components/ui/trial-blur-wrapper"
 
 interface AssetProtectionData {
   metrics: {
@@ -132,39 +133,43 @@ export default function AssetProtectionCards() {
         </div>
       </div>
 
-      {/* Security Violations */}
-      <div 
-        className="bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1"
-        onClick={() => handleCardClick('violations')}
-      >
-        <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
-          Security Violations
-        </p>
-        <p className="text-xs text-gray-600 mb-4">Today</p>
-        <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
-          {data?.metrics.violationsToday ?? 0}
-        </p>
-        <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>Click to view details →</span>
+      {/* Security Violations - Blur this */}
+      <TrialBlurWrapper featureName="Security Violations">
+        <div 
+          className="bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1"
+          onClick={() => handleCardClick('violations')}
+        >
+          <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
+            Security Violations
+          </p>
+          <p className="text-xs text-gray-600 mb-4">Today</p>
+          <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
+            {data?.metrics.violationsToday ?? 0}
+          </p>
+          <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            <span>Click to view details →</span>
+          </div>
         </div>
-      </div>
+      </TrialBlurWrapper>
 
-      {/* Active Geofences */}
-      <div 
-        className="bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1"
-        onClick={() => handleCardClick('geofences')}
-      >
-        <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
-          Active Geofences
-        </p>
-        <p className="text-xs text-gray-600 mb-4">Security Zones</p>
-        <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
-          {data?.metrics.activeGeofences ?? 0}
-        </p>
-        <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>Click to view details →</span>
+      {/* Active Geofences - Blur this */}
+      <TrialBlurWrapper featureName="Active Geofences">
+        <div 
+          className="bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1"
+          onClick={() => handleCardClick('geofences')}
+        >
+          <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
+            Active Geofences
+          </p>
+          <p className="text-xs text-gray-600 mb-4">Security Zones</p>
+          <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
+            {data?.metrics.activeGeofences ?? 0}
+          </p>
+          <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            <span>Click to view details →</span>
+          </div>
         </div>
-      </div>
+      </TrialBlurWrapper>
 
       {/* Overall Compliance Score */}
       <div 

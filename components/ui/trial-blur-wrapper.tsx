@@ -32,7 +32,10 @@ export default function TrialBlurWrapper({
         </div>
         
         {/* Unlock overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-neutral-600/50 rounded-xl">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-600/50 rounded-xl">
+          <div className="text-white text-sm font-medium mb-2 text-center px-2">
+            {featureName}
+          </div>
           <button
             onClick={() => setShowModal(true)}
             className="px-4 py-2 bg-[#003d5c] hover:bg-[#005f7f] text-white rounded-lg font-medium shadow-lg transition-all duration-200 hover:scale-105"
