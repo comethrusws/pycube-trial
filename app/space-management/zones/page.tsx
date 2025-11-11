@@ -1,7 +1,7 @@
 "use client"
 
 import DashboardLayout from "@/components/dashboard/dashboard-layout"
-import TrialGuard from "@/components/ui/trial-guard"
+import TrialOverlay from "@/components/ui/trial-overlay"
 import { useEffect, useState } from "react"
 import { apiGet, apiPost } from "@/lib/fetcher"
 import Link from "next/link"
@@ -58,7 +58,7 @@ export default function ZonesPage() {
 	}
 
 	return (
-		<TrialGuard>
+		<TrialOverlay>
 			<DashboardLayout>
 			<div className="p-8 bg-gray-50 min-h-screen">
 				<div className="max-w-7xl mx-auto space-y-6">
@@ -179,6 +179,6 @@ export default function ZonesPage() {
 				</div>
 			</div>
 		</DashboardLayout>
-		</TrialGuard>
+		</TrialOverlay>
 	)
 }

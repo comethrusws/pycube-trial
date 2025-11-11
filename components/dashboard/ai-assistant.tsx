@@ -448,6 +448,12 @@ export default function AiAssistant() {
           </div>
         </div>
       </div>
+
+      <TrialModal
+        isOpen={showTrialModal}
+        onClose={() => setShowTrialModal(false)}
+        featureName="AI Assistant"
+      />
     </div>
   )
 }

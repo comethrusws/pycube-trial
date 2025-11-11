@@ -1,12 +1,12 @@
 "use client"
 
 import DashboardLayout from "@/components/dashboard/dashboard-layout"
-import TrialGuard from "@/components/ui/trial-guard"
+import TrialOverlay from "@/components/ui/trial-overlay"
 
 export default function DashboardPage() {
   return (
-    <TrialGuard>
+    <TrialOverlay>
       <DashboardLayout />
-    </TrialGuard>
+    </TrialOverlay>
   )
 }
