@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { apiGet } from "@/lib/fetcher"
 import type { Asset, Building, Floor, Zone } from "@/lib/types"
 import { MapPin, CheckCircle, Wrench, AlertTriangle, Navigation } from "lucide-react"
+import TrialBlurWrapper from "@/components/ui/trial-blur-wrapper"
 
 export default function AssetDetailsContent({ assetId }: { assetId: string }) {
   const [asset, setAsset] = useState<Asset | null>(null)
@@ -354,6 +355,7 @@ export default function AssetDetailsContent({ assetId }: { assetId: string }) {
 
         {/* Column 2: Status and Location */}
         <div className="space-y-6">
+        <TrialBlurWrapper featureName="Asset Actions">
         <div className="bg-white rounded-2xl p-6 border">
             <h2 className="text-lg font-semibold mb-4" style={{ color: "#001f3f" }}>Asset Actions</h2>
             {actionMessage && (
@@ -446,6 +448,7 @@ export default function AssetDetailsContent({ assetId }: { assetId: string }) {
               </div>
             </div>
           </div>
+          </TrialBlurWrapper>
 
           <div className="bg-white rounded-2xl p-6 border">
             <h2 className="text-lg font-semibold mb-4" style={{ color: "#001f3f" }}>Status & Utilization</h2>
