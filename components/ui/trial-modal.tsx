@@ -25,8 +25,8 @@ export default function TrialModal({ isOpen, onClose, featureName = "this featur
 
         {/* Icon */}
         <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
-            <Lock className="w-8 h-8 text-orange-600" />
+          <div className="w-16 h-16 bg-[#001f3f]/20 rounded-full flex items-center justify-center">
+            <Lock className="w-8 h-8 text-[#001f3f]" />
           </div>
         </div>
 
@@ -42,7 +42,7 @@ export default function TrialModal({ isOpen, onClose, featureName = "this featur
 
           {/* Contact info */}
           <div className="bg-gray-50 rounded-lg p-4 mb-6">
-            <div className="flex items-center justify-center space-x-2 text-teal-600">
+            <div className="flex items-center justify-center space-x-2 text-[#001f3f]">
               <Mail className="w-4 h-4" />
               <span className="font-medium">admin@pycube.com</span>
             </div>
@@ -61,7 +61,7 @@ export default function TrialModal({ isOpen, onClose, featureName = "this featur
             </button>
             <a
               href="mailto:admin@pycube.com?subject=Pycube Trial Upgrade Request"
-              className="flex-1 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors text-center"
+              className="flex-1 px-4 py-2 bg-[#003d5c] hover:bg-[#001a36] text-white rounded-lg transition-colors text-center"
             >
               Contact Billing
             </a>
