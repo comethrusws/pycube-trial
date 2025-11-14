@@ -167,7 +167,8 @@ export async function GET(request: NextRequest) {
     // Calculate dashboard subsection cards data
     
     // Asset Protection Cards
-    const protectedAssets = data.assets.filter(a => a.status !== "lost").length
+    // Protected assets should match tagged assets (all tagged assets are protected)
+    const protectedAssets = taggedAssets // Same as tagged assets count
     const activeGeofences = Math.floor(data.zones.length * 0.85) // Assuming 85% zones have geofences
     const violationsToday = Math.floor(Math.random() * 3) // Random violations for demo
     const avgResponseTime = Math.floor(Math.random() * 10) + 5 // 5-15 minutes
