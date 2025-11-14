@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { Shield, BarChart3, Wrench, TrendingUp, Building2, Target, AlertTriangle, Clock, CheckCircle, Users, MapPin, Eye } from "lucide-react"
+import TrialBlurWrapper from "@/components/ui/trial-blur-wrapper"
 
 interface DashboardCardsData {
   assetProtection: {
@@ -161,129 +162,138 @@ export default function SubsectionCards({ data }: SubsectionCardsProps) {
       </div>
 
       {/* Preventative Maintenance Section */}
-      <div>
-        <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-md font-light text-[#001f3f]">Preventative Maintenance</h2>
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-md font-light text-[#001f3f]">Preventative Maintenance</h2>
+          </div>
+        <TrialBlurWrapper featureName="Preventative Maintenance">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <DashboardCard
+              title="Total Monitored Assets"
+              value={data.preventativeMaintenance.totalMonitoredAssets}
+              subtitle="Under PM Program"
+              icon={Eye}
+              onClick={() => router.push('/preventative-maintenance')}
+            />
+            <DashboardCard
+              title="High Risk Assets"
+              value={data.preventativeMaintenance.highRiskAssets}
+              subtitle="Need Attention"
+              icon={AlertTriangle}
+              onClick={() => router.push('/preventative-maintenance')}
+            />
+            <DashboardCard
+              title="PM Tasks Completed"
+              value={data.preventativeMaintenance.pmTasksCompleted}
+              subtitle="This Period"
+              icon={CheckCircle}
+              onClick={() => router.push('/preventative-maintenance/requests')}
+            />
+            <DashboardCard
+              title="Potential Savings"
+              value={`$${(data.preventativeMaintenance.potentialSavings).toLocaleString()}`}
+              subtitle="Cost Avoidance"
+              icon={TrendingUp}
+              onClick={() => router.push('/preventative-maintenance')}
+            />
+          </div>
+        </TrialBlurWrapper>
+
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <DashboardCard
-            title="Total Monitored Assets"
-            value={data.preventativeMaintenance.totalMonitoredAssets}
-            subtitle="Under PM Program"
-            icon={Eye}
-            onClick={() => router.push('/preventative-maintenance')}
-          />
-          <DashboardCard
-            title="High Risk Assets"
-            value={data.preventativeMaintenance.highRiskAssets}
-            subtitle="Need Attention"
-            icon={AlertTriangle}
-            onClick={() => router.push('/preventative-maintenance')}
-          />
-          <DashboardCard
-            title="PM Tasks Completed"
-            value={data.preventativeMaintenance.pmTasksCompleted}
-            subtitle="This Period"
-            icon={CheckCircle}
-            onClick={() => router.push('/preventative-maintenance/requests')}
-          />
-          <DashboardCard
-            title="Potential Savings"
-            value={`$${(data.preventativeMaintenance.potentialSavings).toLocaleString()}`}
-            subtitle="Cost Avoidance"
-            icon={TrendingUp}
-            onClick={() => router.push('/preventative-maintenance')}
-          />
-        </div>
-      </div>
 
       {/* Asset Utilization Section */}
-      <div>
-        <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-md font-light text-[#001f3f]">Asset Utilization</h2>
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-md font-light text-[#001f3f]">Asset Utilization</h2>
+          </div>
+        <TrialBlurWrapper featureName="Asset Utilization">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <DashboardCard
+              title="Average Utilization"
+              value={`${data.assetUtilization.avgUtilization}%`}
+              subtitle="System Wide"
+              icon={TrendingUp}
+              onClick={() => router.push('/asset-utilization')}
+            />
+            <DashboardCard
+              title="Underutilized Assets"
+              value={data.assetUtilization.underutilizedAssets}
+              subtitle="< 40% utilization"
+              icon={TrendingUp}
+              onClick={() => router.push('/asset-utilization')}
+            />
+            <DashboardCard
+              title="Movement Alerts"
+              value={data.assetUtilization.movementAlerts}
+              subtitle="Last 48 hours"
+              icon={MapPin}
+              onClick={() => router.push('/asset-utilization')}
+            />
+            <DashboardCard
+              title="Idle Assets (Critical)"
+              value={data.assetUtilization.idleCriticalAssets}
+              subtitle="> 30 days idle"
+              icon={Clock}
+              onClick={() => router.push('/asset-utilization')}
+            />
+          </div>
+        </TrialBlurWrapper>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <DashboardCard
-            title="Average Utilization"
-            value={`${data.assetUtilization.avgUtilization}%`}
-            subtitle="System Wide"
-            icon={TrendingUp}
-            onClick={() => router.push('/asset-utilization')}
-          />
-          <DashboardCard
-            title="Underutilized Assets"
-            value={data.assetUtilization.underutilizedAssets}
-            subtitle="< 40% utilization"
-            icon={TrendingUp}
-            onClick={() => router.push('/asset-utilization')}
-          />
-          <DashboardCard
-            title="Movement Alerts"
-            value={data.assetUtilization.movementAlerts}
-            subtitle="Last 48 hours"
-            icon={MapPin}
-            onClick={() => router.push('/asset-utilization')}
-          />
-          <DashboardCard
-            title="Idle Assets (Critical)"
-            value={data.assetUtilization.idleCriticalAssets}
-            subtitle="> 30 days idle"
-            icon={Clock}
-            onClick={() => router.push('/asset-utilization')}
-          />
-        </div>
-      </div>
 
       {/* Space Management Section */}
-      <div>
-        <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-md font-light text-[#001f3f]">Space Management</h2>
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-md font-light text-[#001f3f]">Space Management</h2>
+          </div>
+        <TrialBlurWrapper featureName="Space Management">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <DashboardCard
+              title="Floors"
+              value={data.spaceManagement.totalFloors}
+              subtitle="Total"
+              icon={Building2}
+              onClick={() => router.push('/space-management/floors')}
+            />
+            <DashboardCard
+              title="Zones"
+              value={data.spaceManagement.totalZones}
+              subtitle="Total"
+              icon={MapPin}
+              onClick={() => router.push('/space-management/zones')}
+            />
+            <DashboardCard
+              title="Readers Online"
+              value={data.spaceManagement.readersOnline}
+              subtitle="Active"
+              icon={CheckCircle}
+              onClick={() => router.push('/space-management/readers')}
+            />
+            <DashboardCard
+              title="Readers Offline"
+              value={data.spaceManagement.readersOffline}
+              subtitle="Inactive"
+              icon={AlertTriangle}
+              onClick={() => router.push('/space-management/readers')}
+            />
+            <DashboardCard
+              title="Assets In Use"
+              value={data.spaceManagement.assetsInUse}
+              subtitle="Currently Active"
+              icon={Users}
+              onClick={() => router.push('/assets')}
+            />
+            <DashboardCard
+              title="Assets Available"
+              value={data.spaceManagement.assetsAvailable}
+              subtitle="Ready for Use"
+              icon={CheckCircle}
+              onClick={() => router.push('/assets')}
+            />
+          </div>
+        </TrialBlurWrapper>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <DashboardCard
-            title="Floors"
-            value={data.spaceManagement.totalFloors}
-            subtitle="Total"
-            icon={Building2}
-            onClick={() => router.push('/space-management/floors')}
-          />
-          <DashboardCard
-            title="Zones"
-            value={data.spaceManagement.totalZones}
-            subtitle="Total"
-            icon={MapPin}
-            onClick={() => router.push('/space-management/zones')}
-          />
-          <DashboardCard
-            title="Readers Online"
-            value={data.spaceManagement.readersOnline}
-            subtitle="Active"
-            icon={CheckCircle}
-            onClick={() => router.push('/space-management/readers')}
-          />
-          <DashboardCard
-            title="Readers Offline"
-            value={data.spaceManagement.readersOffline}
-            subtitle="Inactive"
-            icon={AlertTriangle}
-            onClick={() => router.push('/space-management/readers')}
-          />
-          <DashboardCard
-            title="Assets In Use"
-            value={data.spaceManagement.assetsInUse}
-            subtitle="Currently Active"
-            icon={Users}
-            onClick={() => router.push('/assets')}
-          />
-          <DashboardCard
-            title="Assets Available"
-            value={data.spaceManagement.assetsAvailable}
-            subtitle="Ready for Use"
-            icon={CheckCircle}
-            onClick={() => router.push('/assets')}
-          />
-        </div>
-      </div>
+      
     </div>
   )
 }

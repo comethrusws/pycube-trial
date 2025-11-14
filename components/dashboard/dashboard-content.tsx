@@ -10,6 +10,7 @@ import ComplianceSummaryCard from "./compliance-summary-card"
 import AssetsByFloorCard from "./assets-by-floor-card"
 import MaintenanceImpactCard from "./maintenance-impact-card"
 import SubsectionCards from "./subsection-cards"
+import TrialBlurWrapper from "../ui/trial-blur-wrapper"
 
 function DashboardContent() {
   const [data, setData] = useState<DashboardData>()
@@ -366,9 +367,13 @@ function DashboardContent() {
 
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <TrialBlurWrapper featureName="Assets By Floor">
           <AssetsByFloorCard />
+          </TrialBlurWrapper>
           <ComplianceSummaryCard />
+          <TrialBlurWrapper featureName="Maintenance Impact">
           <MaintenanceImpactCard />
+          </TrialBlurWrapper>
         </div>
       </div>    
 
