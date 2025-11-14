@@ -1,8 +1,7 @@
 "use client"
 
-import React from "react"
+import React, { useEffect } from "react"
 import { X, Mail, Lock } from "lucide-react"
-import Link from "next/link"
 
 interface TrialModalProps {
   isOpen: boolean
@@ -11,12 +10,48 @@ interface TrialModalProps {
 }
 
 export default function TrialModal({ isOpen, onClose, featureName = "this feature" }: TrialModalProps) {
+  // Handle escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape)
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen, onClose])
+
   if (!isOpen) return null
 
+  // Handle click outside
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
+  }
+
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+      onClick={handleBackdropClick}
+    >
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative animate-in fade-in-0 duration-300">
         {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
 
         {/* Icon */}
         <div className="flex justify-center mb-4">
@@ -48,13 +83,12 @@ export default function TrialModal({ isOpen, onClose, featureName = "this featur
 
           {/* Actions */}
           <div className="flex space-x-3">
-            <Link href="/dashboard">
             <button
+              onClick={onClose}
               className="flex-1 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
             >
               Continue with Trial
             </button>
-            </Link>
             <a
               href="mailto:admin@pycube.com?subject=Pycube Trial Upgrade Request"
               className="flex-1 px-4 py-2 bg-[#003d5c] hover:bg-[#001a36] text-white rounded-lg transition-colors text-center"
