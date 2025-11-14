@@ -9,8 +9,7 @@ import type { DashboardData } from "@/lib/types"
 import ComplianceSummaryCard from "./compliance-summary-card"
 import AssetsByFloorCard from "./assets-by-floor-card"
 import MaintenanceImpactCard from "./maintenance-impact-card"
-import AssetProtectionCards from "./asset-protection-cards"
-import TrialBlurWrapper from "@/components/ui/trial-blur-wrapper"
+import SubsectionCards from "./subsection-cards"
 
 function DashboardContent() {
   const [data, setData] = useState<DashboardData>()
@@ -101,106 +100,80 @@ function DashboardContent() {
     <div className="p-6 lg:p-8 space-y-8">
       <div>
         <h1 className="text-3xl font-light" style={{ color: "#001f3f" }}>
-          Overview
+          Dashboard Overview
         </h1>
+        <p className="text-gray-600 mt-2">Monitor all systems and key metrics from a centralized view</p>
       </div>
 
-      {/* Enhanced Stat Cards with Utilization */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+      {/* Enhanced Utilization Cards - Keep these */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { 
-            title: "Total Assets", 
-            subtitle: "In System", 
-            value: data?.stats.totalAssets ?? "-", 
-            type: "totalAssets",
-            clickable: true,
-            restricted: false // Keep accessible
-          },
-          { 
-            title: "Asset Categories", 
-            subtitle: "Category", 
-            value: data?.stats.categories ?? "-", 
-            type: "categories",
-            clickable: true,
-            restricted: true // Blur this
-          },
-          { 
-            title: "Total Facilities", 
-            subtitle: "Facility", 
-            value: data?.stats.totalFacilities ?? "-", 
-            type: "facilities",
-            clickable: true,
-            restricted: false // Keep accessible
-          },
-          { 
-            title: "Total Users", 
-            subtitle: "Active", 
-            value: data?.stats.totalUsers ?? "-", 
-            type: "users",
-            clickable: false,
-            restricted: true // Blur this
-          },
           {
             title: "Avg Utilization",
             subtitle: "System Wide",
             value: data?.stats.avgUtilization ? `${data.stats.avgUtilization}%` : "-",
             type: "utilization",
-            clickable: true,
-            restricted: false // Keep accessible
+            clickable: true
           },
           {
-            title: "Underutilized",
-            subtitle: "Assets",
+            title: "Underutilized Assets",
+            subtitle: "< 40% Usage",
             value: data?.stats.underutilizedAssets ?? "-",
             type: "utilization",
-            clickable: true,
-            restricted: true // Blur this
+            clickable: true
           },
-        ].map((card, i) => {
-          const CardContent = (
-            <div 
-              className={`bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 ${
-                card.clickable 
-                  ? 'hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1' 
-                  : 'hover:shadow-md'
-              }`}
-              onClick={() => card.clickable && handleCardClick(card.type)}
-            >
-              <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
-                {card.title}
-              </p>
-              <p className="text-xs text-gray-600 mb-4">{card.subtitle}</p>
-              <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
-                {typeof card.value === 'number' ? card.value.toLocaleString() : card.value}
-              </p>
-              {card.clickable && (
-                <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Click to view details →</span>
-                </div>
-              )}
-            </div>
-          )
-
-          return card.restricted ? (
-            <TrialBlurWrapper key={i} featureName={card.title}>
-              {CardContent}
-            </TrialBlurWrapper>
-          ) : (
-            <div key={i}>{CardContent}</div>
-          )
-        })}
+          { 
+            title: "Total Assets", 
+            subtitle: "In System", 
+            value: data?.stats.totalAssets ?? "-", 
+            type: "totalAssets",
+            clickable: true 
+          },
+          { 
+            title: "Total Facilities", 
+            subtitle: "Active", 
+            value: data?.stats.totalFacilities ?? "-", 
+            type: "facilities",
+            clickable: true 
+          }
+        ].map((card, i) => (
+          <div 
+            key={i} 
+            className={`bg-white rounded-xl p-6 border border-gray-200 transition-all duration-200 ${
+              card.clickable 
+                ? 'hover:shadow-lg hover:border-teal-300 cursor-pointer transform hover:-translate-y-1' 
+                : 'hover:shadow-md'
+            }`}
+            onClick={() => card.clickable && handleCardClick(card.type)}
+          >
+            <p className="text-sm font-medium mb-1" style={{ color: "#001f3f" }}>
+              {card.title}
+            </p>
+            <p className="text-xs text-gray-600 mb-4">{card.subtitle}</p>
+            <p className="text-4xl font-light" style={{ color: "#001f3f" }}>
+              {typeof card.value === 'number' ? card.value.toLocaleString() : card.value}
+            </p>
+            {card.clickable && (
+              <div className="mt-3 flex items-center text-xs text-teal-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span>Click to view details →</span>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
 
-      {/* Asset Protection Overview Cards */}
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          <AssetProtectionCards />
-        </div>
+      {/* Dashboard Subsection Cards */}
+      {data?.dashboardCards && <SubsectionCards data={data.dashboardCards} />}
+
+       <div>
+        <h1 className="text-3xl font-light" style={{ color: "#001f3f" }}>
+          Additional Insights
+        </h1>
       </div>
 
       {/* Charts Section - Updated Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Asset Tagged - Keep accessible */}
+        {/* Asset Tagged */}
         <div className="bg-white rounded-xl p-6 border border-gray-200">
           <div className="space-y-6">
             <div>
@@ -267,147 +240,139 @@ function DashboardContent() {
           </div>
         </div>
 
-        {/* Assets Overview - Blur this */}
-        <TrialBlurWrapper featureName="Assets Overview">
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
-            <h3 className="text-sm font-medium uppercase tracking-wide mb-6" style={{ color: "#001f3f" }}>
-              Assets Overview
-            </h3>
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-4">
-                {[{
-                  label: "Assets Not Found",
-                  value: data?.overview.notFound ?? 0,
-                  accent: "#fee2e2",
-                  border: "#fecaca",
-                  text: "#c41e3a",
-                }, {
-                  label: "Assets In Use",
-                  value: data?.overview.inUse ?? 0,
-                  accent: "#e0f2f1",
-                  border: "#b2dfdb",
-                  text: "#0d7a8c",
-                }, {
-                  label: "Assets Found",
-                  value: data?.overview.found ?? 0,
-                  accent: "#eef2ff",
-                  border: "#c7d2fe",
-                  text: "#1e3a8a",
-                }].map((item, i) => (
-                  <div key={i} className="p-4 rounded-xl" style={{ backgroundColor: item.accent, border: `1px solid ${item.border}` }}>
-                    <p className="text-xs font-medium mb-1" style={{ color: item.text }}>{item.label}</p>
-                    <p className="text-3xl font-light" style={{ color: "#001f3f" }}>{(item.value ?? 0).toLocaleString()}</p>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Recent Assets */}
-              <div className="mt-6">
-                <p className="text-xs font-medium uppercase tracking-wide mb-3" style={{ color: "#0d7a8c" }}>
-                  Recent Assets
-                </p>
-                <div className="space-y-2 max-h-32 overflow-y-auto">
-                  {(data?.assetDetails?.recentAssets ?? [
-                    { id: "A001", name: "MRI Scanner", type: "Medical", location: "Zone A", status: "In Use" },
-                    { id: "A002", name: "Ultrasound", type: "Medical", location: "Zone B", status: "Available" },
-                    { id: "A003", name: "X-Ray Machine", type: "Medical", location: "Zone C", status: "Maintenance" }
-                  ]).slice(0, 3).map((asset, i) => (
-                    <div 
-                      key={i} 
-                      className="flex items-center justify-between p-2 bg-slate-50 rounded border border-gray-200 cursor-pointer hover:bg-slate-100 transition-colors"
-                      onClick={() => router.push(`/assets/${asset.id}`)}
-                    >
-                      <div>
-                        <p className="text-sm font-medium" style={{ color: "#001f3f" }}>{asset.name}</p>
-                        <p className="text-xs text-gray-500">{asset.location}</p>
-                      </div>
-                      <span className={`text-xs px-2 py-1 rounded ${
-                        asset.status === 'Available' ? 'bg-green-100 text-green-600' :
-                        asset.status === 'In Use' ? 'bg-blue-100 text-blue-600' : 
-                        'bg-orange-100 text-orange-600'
-                      }`}>
-                        {asset.status}
-                      </span>
-                    </div>
-                  ))}
+        {/* Assets Overview */}
+        <div className="bg-white rounded-xl p-6 border border-gray-200">
+          <h3 className="text-sm font-medium uppercase tracking-wide mb-6" style={{ color: "#001f3f" }}>
+            Assets Overview
+          </h3>
+          <div className="space-y-4">
+            <div className="grid grid-cols-3 gap-4">
+              {[{
+                label: "Assets Not Found",
+                value: data?.overview.notFound ?? 0,
+                accent: "#fee2e2",
+                border: "#fecaca",
+                text: "#c41e3a",
+              }, {
+                label: "Assets In Use",
+                value: data?.overview.inUse ?? 0,
+                accent: "#e0f2f1",
+                border: "#b2dfdb",
+                text: "#0d7a8c",
+              }, {
+                label: "Assets Found",
+                value: data?.overview.found ?? 0,
+                accent: "#eef2ff",
+                border: "#c7d2fe",
+                text: "#1e3a8a",
+              }].map((item, i) => (
+                <div key={i} className="p-4 rounded-xl" style={{ backgroundColor: item.accent, border: `1px solid ${item.border}` }}>
+                  <p className="text-xs font-medium mb-1" style={{ color: item.text }}>{item.label}</p>
+                  <p className="text-3xl font-light" style={{ color: "#001f3f" }}>{(item.value ?? 0).toLocaleString()}</p>
                 </div>
-              </div>
-
-              {/* Top Categories */}
-              <div className="mt-4">
-                <p className="text-xs font-medium uppercase tracking-wide mb-3" style={{ color: "#0d7a8c" }}>
-                  Top Categories
-                </p>
-                <div className="space-y-2">
-                  {(data?.assetDetails?.topCategories ?? [
-                    { name: "Medical Equipment", count: 156 },
-                    { name: "IT Equipment", count: 89 },
-                    { name: "Furniture", count: 67 }
-                  ]).slice(0, 3).map((category, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <span className="text-sm" style={{ color: "#001f3f" }}>{category.name}</span>
-                      <span className="text-sm font-medium" style={{ color: "#0d7a8c" }}>{category.count}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
-          </div>
-        </TrialBlurWrapper>
-
-        {/* Zones - Blur this */}
-        <TrialBlurWrapper featureName="Zone Scanning">
-          <div className="bg-white rounded-xl p-6 border border-gray-200">
-            <h3 className="text-sm font-medium uppercase tracking-wide mb-6" style={{ color: "#001f3f" }}>
-              Zones Not Scanned
-            </h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium" style={{ color: "#0d7a8c" }}>
-                  Today
-                </span>
-                <span className="text-xs text-gray-600">Status</span>
-              </div>
-              <div className="space-y-4 max-h-64 overflow-y-auto">
-                {(data?.zonesNotScanned && data.zonesNotScanned.length > 0 ? data.zonesNotScanned : [
-                  "ICU", "Emergency", "Radiology", "Surgery", "Orthopedics", "Pharmacy", "Neurology"
-                ]).slice(0, 6).map((zone, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-gray-200">
-                    <span className="text-sm font-light" style={{ color: "#001f3f" }}>
-                      {zone}
-                    </span>
-                    <span className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-600">
-                      Unscanned
+            
+            {/* Recent Assets */}
+            <div className="mt-6">
+              <p className="text-xs font-medium uppercase tracking-wide mb-3" style={{ color: "#0d7a8c" }}>
+                Recent Assets
+              </p>
+              <div className="space-y-2 max-h-32 overflow-y-auto">
+                {(data?.assetDetails?.recentAssets ?? [
+                  { id: "A001", name: "MRI Scanner", type: "Medical", location: "Zone A", status: "In Use" },
+                  { id: "A002", name: "Ultrasound", type: "Medical", location: "Zone B", status: "Available" },
+                  { id: "A003", name: "X-Ray Machine", type: "Medical", location: "Zone C", status: "Maintenance" }
+                ]).slice(0, 3).map((asset, i) => (
+                  <div 
+                    key={i} 
+                    className="flex items-center justify-between p-2 bg-slate-50 rounded border border-gray-200 cursor-pointer hover:bg-slate-100 transition-colors"
+                    onClick={() => router.push(`/assets/${asset.id}`)}
+                  >
+                    <div>
+                      <p className="text-sm font-medium" style={{ color: "#001f3f" }}>{asset.name}</p>
+                      <p className="text-xs text-gray-500">{asset.location}</p>
+                    </div>
+                    <span className={`text-xs px-2 py-1 rounded ${
+                      asset.status === 'Available' ? 'bg-green-100 text-green-600' :
+                      asset.status === 'In Use' ? 'bg-blue-100 text-blue-600' : 
+                      'bg-orange-100 text-orange-600'
+                    }`}>
+                      {asset.status}
                     </span>
                   </div>
                 ))}
               </div>
-              {data?.zonesNotScanned && data.zonesNotScanned.length > 6 && (
-                <button
-                  className="w-full text-center text-sm transition-opacity hover:opacity-80 py-2"
-                  style={{ color: "#0d7a8c" }}
-                >
-                  +{data.zonesNotScanned.length - 6} more
-                </button>
-              )}
+            </div>
+
+            {/* Top Categories */}
+            <div className="mt-4">
+              <p className="text-xs font-medium uppercase tracking-wide mb-3" style={{ color: "#0d7a8c" }}>
+                Top Categories
+              </p>
+              <div className="space-y-2">
+                {(data?.assetDetails?.topCategories ?? [
+                  { name: "Medical Equipment", count: 156 },
+                  { name: "IT Equipment", count: 89 },
+                  { name: "Furniture", count: 67 }
+                ]).slice(0, 3).map((category, i) => (
+                  <div key={i} className="flex items-center justify-between">
+                    <span className="text-sm" style={{ color: "#001f3f" }}>{category.name}</span>
+                    <span className="text-sm font-medium" style={{ color: "#0d7a8c" }}>{category.count}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </TrialBlurWrapper>
+        </div>
+
+        {/* Zones */}
+        <div className="bg-white rounded-xl p-6 border border-gray-200">
+          <h3 className="text-sm font-medium uppercase tracking-wide mb-6" style={{ color: "#001f3f" }}>
+            Zones Not Scanned
+          </h3>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium" style={{ color: "#0d7a8c" }}>
+                Today
+              </span>
+              <span className="text-xs text-gray-600">Status</span>
+            </div>
+            <div className="space-y-4 max-h-64 overflow-y-auto">
+              {(data?.zonesNotScanned && data.zonesNotScanned.length > 0 ? data.zonesNotScanned : [
+                "ICU", "Emergency", "Radiology", "Surgery", "Orthopedics", "Pharmacy", "Neurology"
+              ]).slice(0, 6).map((zone, i) => (
+                <div key={i} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-gray-200">
+                  <span className="text-sm font-light" style={{ color: "#001f3f" }}>
+                    {zone}
+                  </span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-600">
+                    Unscanned
+                  </span>
+                </div>
+              ))}
+            </div>
+            {data?.zonesNotScanned && data.zonesNotScanned.length > 6 && (
+              <button
+                className="w-full text-center text-sm transition-opacity hover:opacity-80 py-2"
+                style={{ color: "#0d7a8c" }}
+              >
+                +{data.zonesNotScanned.length - 6} more
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
       <div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <TrialBlurWrapper featureName="Assets by Floor">
-            <AssetsByFloorCard />
-          </TrialBlurWrapper>
+          <AssetsByFloorCard />
           <ComplianceSummaryCard />
-          <TrialBlurWrapper featureName="Maintenance Impact">
-            <MaintenanceImpactCard />
-          </TrialBlurWrapper>
+          <MaintenanceImpactCard />
         </div>
       </div>    
 
-      {/* Visibility - Keep accessible */}
+      {/* Visibility */}
       <div className="bg-white rounded-xl p-6 border border-gray-200">
         <h2 className="text-lg font-light mb-6" style={{ color: "#001f3f" }}>
           Visibility and Location
