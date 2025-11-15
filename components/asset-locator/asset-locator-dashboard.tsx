@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { 
   MapPin, Users, Building, AlertTriangle, CheckCircle, Clock, 
   TrendingUp, TrendingDown, RefreshCw, ExternalLink, PenToolIcon,
@@ -23,7 +24,7 @@ const Modal = ({ isOpen, onClose, title, children }: {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/20 bg-opacity-20 backdrop-blur-2xl flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/20 bg-opacity-20 backdrop-blur-xl flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold" style={{ color: "#001f3f" }}>{title}</h2>
@@ -338,6 +339,7 @@ export default function AssetLocatorDashboard() {
     flaggedReasons: { name: string; value: number; color: string }[]
   }>()
 
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<"overview" | "utilization">("utilization")
   const [selectedAsset, setSelectedAsset] = useState<any>(null)
@@ -362,6 +364,14 @@ export default function AssetLocatorDashboard() {
         setIsLoading(false)
       })
   }, [])
+
+  // Handle URL tab parameter
+  useEffect(() => {
+    const tabParam = searchParams.get("tab")
+    if (tabParam === "location") {
+      setActiveTab("overview")
+    }
+  }, [searchParams])
 
   const monitoredCategories = data?.monitoredCategories ?? []
   const locationTrends = data?.locationTrends ?? []
